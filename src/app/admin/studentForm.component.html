@@ -1,0 +1,40 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col bg-dark text-white">
+			<a class="navbar-brand">Project Management System</a>
+		</div>
+	</div>
+</div>
+<form #form="ngForm" novalidate (ngSubmit)="save(form)" class="m-2">
+	<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+		<strong>Failed!</strong> {{errorMessage}}.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	
+	<div class="form-group">
+		<label>Roll Number</label>
+		<input class="form-control" #name="ngModel" name="rollNumber" [(ngModel)]="student.rollNumber" required />
+		<span *ngIf="submitted && roll.invalid" class="text-danger"> Please enter your roll number! </span>
+	</div>
+	<div class="form-group">
+		<label>Name</label>
+		<input class="form-control" #name="ngModel" name="name" [(ngModel)]="student.name" required />
+		<span *ngIf="submitted && roll.invalid" class="text-danger"> Please enter your Name! </span>
+	</div>
+	<div class="form-group">
+		<label>Branch</label>
+		<select class="form-control" placeholder="CSE" #name="ngModel" name="branch" [(ngModel)]="student.branch">
+			<option value=''>Select Branch</option>
+			<option>CSE</option>
+			<option>ME</option>
+			<option>Civil</option>
+			<option>ECE</option>
+		</select>
+	</div>
+	<div class="text-center">
+		<button class="btn btn-secondary m-1" routerLink="/admin/main/students">Back</button>
+		<button class="btn btn-success m-1" type="submit">Submit</button>
+	</div>
+</form>

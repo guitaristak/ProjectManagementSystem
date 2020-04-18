@@ -1,0 +1,28 @@
+<table class="table table-sm table-striped">
+	<thead>
+		<tr>
+			<th>Roll Number</th>
+			<th>Student Name</th>
+			<th>Branch</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let p of getStudents()">
+			<td>{{p.rollNumber}}</td>
+			<td>{{p.name}}</td>
+			<td>{{p.branch}}</td>
+			<td>
+				<button class="btn btn-sm btn-warning" [routerLink]="['/admin/main/students/edit', p.id]">
+					Edit
+				</button>
+				<button class="btn btn-sm btn-danger" (click)="deleteRecord(p.id, p.name)" [disabled] = "isAllowToDelete(p.rollNumber)">
+					Delete
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<button class="btn" routerLink="/admin/main/students/create" style="color:white; background: #A8413E">
+	Create New Record
+</button>

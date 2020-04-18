@@ -1,0 +1,121 @@
+<div class="wrapper">
+	<!-- Sidebar Holder -->
+	<nav id="sidebar">
+		<div class="sidebar-header">
+			<h3>The NorthCap University</h3>
+		</div>
+
+		<ul class="list-unstyled components">
+
+
+			<li>
+				<a (click)="changeBranch()">Home</a>
+				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
+				<ul class="collapse list-unstyled" id="pageSubmenu">
+					<li>
+						<a (click)="changeBranch('CSE')">CSE</a>
+					</li>
+					<li>
+						<a (click)="changeBranch('ECE')">ECE</a>
+					</li>
+					<li>
+						<a (click)="changeBranch('ME')">ME</a>
+					</li>
+					<li>
+						<a (click)="changeBranch('Civil')">Civil</a>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+
+		<ul class="list-unstyled CTAs">
+			<li>
+				<a [routerLink]="['/admin']" class="download">Admin</a>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- Page Content Holder -->
+	<div id="content">
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+
+				<button type="button" id="sidebarCollapse" class="navbar-btn">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<i class="fas fa-align-justify"></i>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item active">
+								<img src="../../assets/images/Untitled-1.png" alt="" width="180px" height="66px">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="container-fluid no-margin">
+
+			<div class="row">
+			
+
+				<div class="col-xs-12 col-md-12 projects">
+					<h3 class="color-custom">Projects List</h3>
+					<h5 class="text-center" *ngIf="records.length === 0">No project available.</h5>
+					<div *ngFor="let record of records" class="project-list">
+						<div class="project-details">
+							<div class="mb-2">
+								<span class="h4">{{record.name}}</span>&nbsp;
+								<sup class="badge" [ngClass]="{
+							'badge-danger': record.status === 'Started',
+							'badge-warning': record.status === 'In Progress',
+							'badge-primary': record.status === 'Completed',
+							'badge-success': record.status === 'Evaluated'
+						}">
+									{{record.status}}
+								</sup>
+								<span class="pull-right text-muted"><strong>{{record.studentsAlloted.length}}</strong> Students
+									Alloted</span>
+							</div>
+							<p><strong class="pt-2">Branch: </strong>{{record.branch}}</p>
+							<p class="text-danger more-details" (click)="changeSelectedProject(record.id)">
+								Click for {{ record.id != selectedProject ? 'alloted student details' : 'less'}} details...
+							</p>
+						</div>
+						<div class="student-details" *ngIf="record.id == selectedProject">
+							<table class="table">
+								<thead>
+									<tr class="text-center">
+										<th colspan="3" class="text-muted">Alloted Students Details</th>
+									</tr>
+									<tr>
+										<th>Roll Number</th>
+										<th>Name</th>
+										<th>Branch</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let student of record.studentsAlloted;">
+										<td>{{student}}</td>
+										<td>{{getStudentByRollNumber(student).name}}</td>
+										<td>{{getStudentByRollNumber(student).branch}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

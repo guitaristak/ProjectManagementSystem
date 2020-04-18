@@ -1,0 +1,36 @@
+<table class="table table-sm table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Project Name</th>
+			<th>Branch</th>
+			<th>Technology Used</th>
+			<th>Roll Number</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let p of getRecords()">
+			<td>{{p.id}}</td>
+			<td>{{p.name}}</td>
+			<td>{{p.branch}}</td>
+			<td>{{p.techused}}</td>
+			<td>
+				<p *ngFor="let sudentRollNumber of p.studentsAlloted">{{sudentRollNumber}}</p>
+			</td>
+			<td>{{p.status}}</td>
+			<td>
+				<button class="btn btn-sm btn-warning mr-2" [routerLink]="['/admin/main/records/edit', p.id]">
+					Edit
+				</button>
+				<button class="btn btn-sm btn-danger" (click)="deleteRecord(p.id, p.name)">
+					Delete
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<button class="btn" routerLink="/admin/main/records/create" style="color:white; background: #A8413E">
+	Create New Record
+</button>

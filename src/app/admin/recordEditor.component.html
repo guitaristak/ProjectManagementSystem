@@ -1,0 +1,58 @@
+<div class="bg-primary p-2 text-white" [class.bg-warning]="editing" [class.text-dark]="editing">
+    <h5>{{editing ? "Edit" : "Create"}} Record</h5>
+</div>
+<form novalidate #form="ngForm" (ngSubmit)="save(form)">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+				<strong>Failed!</strong> {{errorMessage}}.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+    <div class="form-group">
+        <label>Project Name</label>
+        <input class="form-control" name="name" [(ngModel)]="record.name" required/>
+    </div>
+    <div class="form-group">
+        <label>Branch</label>
+        <select class="form-control" #name="ngModel" name="branch" [(ngModel)]="record.branch" required>
+						<option value="">Select branch</option>
+						<option>CSE</option>
+            <option>ME</option>
+            <option>Civil</option>
+            <option>ECE</option>
+        </select>
+		</div>
+		<div class="form-group">
+        <label>Student Allotment</label>
+        <select class="form-control" #name="ngModel" name= "studentsAlloted" [(ngModel)]="record.studentsAlloted" multiple>
+            <option *ngFor="let student of getStudents()" value="{{student.rollNumber}}">{{student.rollNumber}}: {{student.name}}</option>
+        </select>
+		</div>
+    <div class="form-group">
+        <label>Technology Used</label>
+        <input class="form-control" name="techused" [(ngModel)]="record.techused" required/>
+		</div>
+		
+    <div class="form-group">
+				<label>Status</label>
+				<select class="form-control" #name="ngModel" name="status" [(ngModel)]="record.status" required>
+					<option value="">Select Status</option>
+            <option>Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+            <option>Evaluated</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mr-2" [class.btn-warning]="editing" [disabled]="!record.studentsAlloted || (record.studentsAlloted && (record.studentsAlloted.length < 2 || record.studentsAlloted.length > 4))">
+        {{editing ? "Save" : "Create"}} 
+    </button>
+    <button type="reset" class="btn btn-secondary" routerLink="/admin/main/projects">
+        Cancel
+		</button>
+		<p class="label text-danger" *ngIf="!record.studentsAlloted || (record.studentsAlloted && record.studentsAlloted.length < 2)">
+			Please select minimum 2 student
+		</p>
+		<p class="label text-danger" *ngIf="!record.studentsAlloted || (record.studentsAlloted && record.studentsAlloted.length > 4)">
+			You can select maximum 4 student
+		</p>
+</form>
