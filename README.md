@@ -1,27 +1,26 @@
-# Problem2
+# Project Management System
+
+A Project Management System is used by the teachers to allot projects to the students and manage work progress of those projects.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
-## Development server
+## Installing Angular-CLI and npm dependencies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm i` to install all the required modules to run the project.
 
-## Code scaffolding
+## Handling Database
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run json` to handle the database created by the user in the Project Management System.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Development server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Running end-to-end tests
+## Default Admin Credentials
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* **Username** : admin
+* **Password** : secret
